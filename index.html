@@ -1,11 +1,656 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Website of Jan Großer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jan Großer - Economist/Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #0e0e0e;
+      --surface:   #161616;
+      --border:    #2a2a2a;
+      --accent:    #c8f04a;
+      --accent2:   #f04a6e;
+      --text:      #e8e4dc;
+      --muted:     #6e6b65;
+      --serif:     'Playfair Display', Georgia, serif;
+      --mono:      'DM Mono', monospace;
+      --sans:      'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem 3rem 4rem;
+      border-right: 1px solid var(--border);
+    }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+    .hero-name em { color: var(--accent); font-style: italic; }
+    .hero-desc {
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.4rem;
+      margin-bottom: 3rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 400;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { background: #d8ff60; transform: translateY(-2px); }
+
+    .hero-right {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem 3rem 4rem;
+    }
+    .stat-grid {
+      display: grid; grid-template-columns:  1fr 1fr; gap: 1px;
+      border: 1px solid var(--border);
+    }
+    .stat {
+      padding: 2rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat:nth-child(even) { border-right: none; }
+    .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 2.8rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    section.visible { opacity: 1; transform: none; }
+
+    .section-header {
+      display: flex; align-items: baseline; gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent2);
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── CV TIMELINE ── */
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+    }
+    .cv-item {
+      display: contents;
+    }
+    .cv-date {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding: 2rem 2rem 2rem 0;
+      border-right: 1px solid var(--border);
+      text-align: right;
+      line-height: 1.4;
+    }
+    .cv-content {
+      padding: 2rem 0 2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .cv-content::before {
+      content: '';
+      position: absolute;
+      left: -5px; top: 2.5rem;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .cv-item:last-child .cv-content { border-bottom: none; }
+    .cv-role {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      margin-bottom: 0.2rem;
+    }
+    .cv-org {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+    }
+    .cv-desc { color: var(--muted); font-size: 0.9rem; max-width: 55ch; }
+
+    /* skill bars */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .skill-item { }
+    .skill-label {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .skill-bar {
+      height: 2px;
+      background: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+    }
+    .project-card {
+      padding: 2.5rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      transition: background 0.25s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .project-card:hover { background: #1e1e1e; }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+    .project-desc { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem; }
+    .project-link {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── OPINIONS ── */
+    .opinions-list { display: flex; flex-direction: column; gap: 0; }
+    .opinion-item {
+      display: grid;
+      grid-template-columns: 120px 1fr 80px;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: padding-left 0.2s;
+    }
+    .opinion-item:hover { padding-left: 0.5rem; }
+    .opinion-date {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .opinion-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+    .opinion-arrow {
+      font-size: 1.2rem;
+      color: var(--accent);
+      text-align: right;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      padding: 4rem 3rem;
+      border-bottom: none;
+    }
+    .contact-left h2 { margin-bottom: 0.5rem; }
+    .contact-left p { color: var(--muted); max-width: 60ch; margin-bottom: 1rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+    .contact-link-icon { color: var(--muted); width: 16px; }
+
+    .contact-right {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      align-items: flex-end;
+    }
+    .big-initials {
+      font-family: var(--serif);
+      font-size: clamp(5rem, 12vw, 11rem);
+      line-height: 1;
+      color: var(--border);
+      font-style: italic;
+      user-select: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.5rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left, .hero-right { padding: 6rem 1.5rem 3rem; border-right: none; }
+      section { padding: 4rem 1.5rem; }
+      .cv-grid { grid-template-columns: 90px 1fr; }
+      #contact { grid-template-columns: 1fr; }
+      .contact-right { display: none; }
+      .opinion-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .opinion-date, .opinion-arrow { display: none; }
+    }
+    
+    @media (max-width: 768px) {
+  #cv > div[style] {
+    grid-template-columns: 1fr !important;
+  }
+}
+  </style>
 </head>
 <body>
-  <h1>Dies ist ein erster Versuch eine persönliche Website zu bauen</h1>
-  <h2>Der andere Text ist in "h1" geschrieben, mal sehen wo dieser erscheint</h2>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">jan.grosser</span>
+  <ul class="nav-links">
+    <li><a href="#cv">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <!-- <li><a href="#opinions">Writing</a></li>-->
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Economics Graduate - Berlin - Open to Network</p>
+    <h1 class="hero-name">Jan<br><em>Großer</em></h1>
+    <p class="hero-desc">
+      Quantitative economist with a strong foundation in empirical methods, causal inference, and economic modelling. Research experience spans prosocial behaviour, distributional preferences, and policy design, with hands-on work across academic institutions and applied research settings (RWI, PwC). Proficient in R, Stata, Python, and SQL.
+    </p>
+    <a href="#cv" class="hero-cta">View my profile ↓</a>
+  </div>
+  <div class="hero-right">
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Years in data</div>
+      </div><!--
+      <div class="stat">
+        <div class="stat-number">9</div>
+        <div class="stat-label">Projects shipped</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Open-source repos</div>
+      </div>
+      -->
+      <div class="stat">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Coffees consumed</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CV / EXPERIENCE -->
+<!-- CV / EXPERIENCE & EDUCATION -->
+<section id="cv">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Experience &amp; Education</h2>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border);">
+
+    <!-- LEFT: Experience -->
+    <div style="border-right: 1px solid var(--border); padding: 2rem;">
+      <h3 style="font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase;
+                 letter-spacing: 0.15em; color: var(--accent2); margin-bottom: 2rem;">
+        Work Experience
+      </h3>
+      <div class="cv-grid">
+
+        <div class="cv-item">
+          <div class="cv-date">2022 — Present</div>
+          <div class="cv-content">
+            <div class="cv-role">Senior Data Scientist</div>
+            <div class="cv-org">SomeCompany GmbH · Berlin</div>
+            <p class="cv-desc">Led a three-person team building recommender systems serving 2 M+ monthly users. Reduced churn prediction error by 18 % through feature engineering and gradient boosting.</p>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-date">2019 — 2022</div>
+          <div class="cv-content">
+            <div class="cv-role">Data Scientist</div>
+            <div class="cv-org">Analytics Startup · Hamburg</div>
+            <p class="cv-desc">Built end-to-end NLP pipelines for document classification. Deployed models to production using FastAPI and Docker on AWS.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: Education -->
+    <div style="padding: 2rem;">
+      <h3 style="font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase;
+                 letter-spacing: 0.15em; color: var(--accent2); margin-bottom: 2rem;">
+        Education
+      </h3>
+      <div class="cv-grid">
+
+        <div class="cv-item">
+          <div class="cv-date">2017 — 2019</div>
+          <div class="cv-content">
+            <div class="cv-role">M.Sc. Statistics</div>
+            <div class="cv-org">Humboldt-Universität zu Berlin</div>
+            <p class="cv-desc">Thesis on causal inference in observational studies. Graduated with distinction.</p>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-date">2014 — 2017</div>
+          <div class="cv-content">
+            <div class="cv-role">B.Sc. Mathematics</div>
+            <div class="cv-org">Universität Göttingen</div>
+            <p class="cv-desc">Minor in computer science. Wrote my thesis on topological data analysis.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Skills -->
+  <!-- 
+  <div class="skills-grid">
+    <div class="skill-item">
+      <div class="skill-label"><span>Python / Pandas / Sklearn</span><span>95%</span></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="95"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-label"><span>SQL &amp; Data Modelling</span><span>90%</span></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="90"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-label"><span>PyTorch / Transformers</span><span>75%</span></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-label"><span>Causal Inference</span><span>85%</span></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-label"><span>MLOps / Docker / AWS</span><span>70%</span></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="70"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-label"><span>Data Visualisation / D3</span><span>65%</span></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="65"></div></div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Selected Projects</h2>
+  </div>
+
+  <div class="projects-grid">
+    <a class="project-card" href="https://github.com/" target="_blank">
+      <div class="project-tag">NLP · Open Source</div>
+      <div class="project-title">TextLens — Document classifier</div>
+      <p class="project-desc">A lightweight Python library for zero-shot and few-shot text classification, wrapping HuggingFace models with a clean scikit-learn–style API.</p>
+      <span class="project-link">github.com/janedoe/textlens →</span>
+    </a>
+    <a class="project-card" href="#" target="_blank">
+      <div class="project-tag">Dashboard · Product</div>
+      <div class="project-title">Metric Monitor — KPI alerting system</div>
+      <p class="project-desc">Internal tool detecting anomalies in 200+ business metrics using seasonal decomposition and Bayesian changepoint detection. Used by 40+ analysts.</p>
+      <span class="project-link">Case study (PDF) →</span>
+    </a>
+    <a class="project-card" href="#" target="_blank">
+      <div class="project-tag">Visualisation · Journalism</div>
+      <div class="project-title">Berlin Rent Map — Interactive explorer</div>
+      <p class="project-desc">D3-based map of Berlin rental prices from 2015–2024, with filters by Kiez, apartment size, and year. Featured in Tagesspiegel.</p>
+      <span class="project-link">View live →</span>
+    </a>
+  </div>
+</section>
+
+
+<!-- OPINIONS / WRITING -->
+<!--
+<section id="opinions">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Writing &amp; Opinions</h2>
+  </div>
+
+  <div class="opinions-list">
+    <a class="opinion-item" href="#">
+      <span class="opinion-date">Mar 2025</span>
+      <span class="opinion-title">Why most A/B tests in tech are underpowered and what to do about it</span>
+      <span class="opinion-arrow">→</span>
+    </a>
+    <a class="opinion-item" href="#">
+      <span class="opinion-date">Jan 2025</span>
+      <span class="opinion-title">LLMs are not the right tool for causal questions — and that matters</span>
+      <span class="opinion-arrow">→</span>
+    </a>
+    <a class="opinion-item" href="#">
+      <span class="opinion-date">Oct 2024</span>
+      <span class="opinion-title">On the difference between explainable AI and interpretable AI</span>
+      <span class="opinion-arrow">→</span>
+    </a>
+    <a class="opinion-item" href="#">
+      <span class="opinion-date">Jun 2024</span>
+      <span class="opinion-title">Data teams should own fewer dashboards, not more</span>
+      <span class="opinion-arrow">→</span>
+    </a>
+    <a class="opinion-item" href="#">
+      <span class="opinion-date">Feb 2024</span>
+      <span class="opinion-title">Stop calling everything a "data product"</span>
+      <span class="opinion-arrow">→</span>
+    </a>
+  </div>
+</section>
+-->
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="contact-left">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Get in touch</h2>
+      </div>
+      <p>I'm open to network, interesting projects, talks and any other inquiries.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:jan.grosser@yahoo.de">
+          <span class="contact-link-icon">✉</span> jan.grosser@yahoo.de
+        </a>
+        <a class="contact-link" href="https://github.com/jan-grosser-git" target="_blank">
+          <span class="contact-link-icon">⌥</span> GitHub
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/jan-gro%C3%9Fer-057255143/" target="_blank">
+          <span class="contact-link-icon">◈</span> LinkedIn
+        </a>
+      </div>
+    </div>
+    <!-- Big Initials -->
+    <!--<div class="contact-right">
+      <div class="big-initials">Jan Großer</div>
+    </div> -->
+  
+</section>
+
+<footer>
+  <span>© 2026 Jan Großer</span>
+  <span>Built with HTML · Hosted on GitHub Pages</span>
+</footer>
+
+<script>
+  // Intersection Observer for section fade-in
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Animate skill bars when CV section becomes visible
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+  sections.forEach(s => observer.observe(s));
+
+  // Hero is visible from the start
+  document.querySelector('#hero') && (document.querySelector('#hero').style.opacity = '1');
+</script>
 </body>
 </html>
