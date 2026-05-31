@@ -60,25 +60,25 @@
     }
     .nav-links a:hover { color: var(--accent); }
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
+    /* ── Profile ── */
+    #profile {
+      min-height: 90vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto 1fr auto;
       border-bottom: 1px solid var(--border);
     }
-    .hero-header {
+    .profile-header {
       grid-column: 1 / -1;
       padding: 8rem 3rem 0;
       border-bottom: 1px solid var(--border);
     }
-    .hero-left {
+    .profile-left {
       display: flex; flex-direction: column; justify-content: flex-start;
       padding: 3rem;
       border-right: 1px solid var(--border);
     }
-    .hero-tag {
+    .profile-tag {
       font-family: var(--mono);
       font-size: 0.75rem;
       color: var(--accent);
@@ -86,21 +86,21 @@
       text-transform: uppercase;
       margin-bottom: 1.5rem;
     }
-    .hero-name {
+    .profile-name {
       font-family: var(--serif);
-      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-size: clamp(3rem, 4vw, 4rem);
       line-height: 1.05;
       letter-spacing: -0.02em;
       margin-bottom: 0.8rem;
     }
-    .hero-name em { color: var(--accent); font-style: italic; }
-    .hero-desc {
+    .profile-name em { color: inherit; font-style: italic; }
+    .profile-desc {
       max-width: 90ch;
       color: var(--muted);
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       margin-bottom: 3rem;
     }
-    .hero-cta {
+    .profile-cta {
       display: inline-block;
       padding: 0.75rem 2rem;
       background: var(--accent);
@@ -113,19 +113,19 @@
       font-weight: 400;
       transition: background 0.2s, transform 0.2s;
     }
-    .hero-cta:hover { background: #5a9fe0; transform: translateY(-2px); }
+    .profile-cta:hover { background: #5a9fe0; transform: translateY(-2px); }
 
-    .hero-right {
+    .profile-right {
       display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start;
       padding: 3rem;
     }
-    .hero-contact-blurb {
+    .profile-contact-blurb {
       color: var(--muted);
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       margin-bottom: 1.5rem;
       max-width: 40ch;
     }
-    .hero-cta-row {
+    .profile-cta-row {
       grid-column: 1 / -1;
       padding: 2rem 3rem 3rem;
       border-top: 1px solid var(--border);
@@ -147,12 +147,12 @@
     }
     .section-num {
       font-family: var(--mono);
-      font-size: 0.75rem;
+      font-size: 0.9rem;
       color: var(--accent2);
     }
     h2 {
       font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-size: clamp(2.5rem, 3vw, 3rem);
       font-weight: 400;
       letter-spacing: -0.02em;
     }
@@ -163,7 +163,23 @@
       margin-bottom: 0.4rem;
     }
 
-    /* ── CV TIMELINE ── */
+    /* ── CV ── */
+    .cv-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+    .cv-column { padding: 2rem; }
+    .cv-column:first-child { border-right: 1px solid var(--border); }
+    .cv-subhead {
+      font-family: var(--mono);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent2);
+      margin-bottom: 2rem;
+    }
     .cv-grid {
       display: grid;
       grid-template-columns: 200px 1fr;
@@ -174,7 +190,7 @@
     }
     .cv-date {
       font-family: var(--mono);
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       color: var(--muted);
       padding: 2rem 2rem 2rem 0;
       border-right: 1px solid var(--border);
@@ -197,17 +213,17 @@
     .cv-item:last-child .cv-content { border-bottom: none; }
     .cv-role {
       font-family: var(--serif);
-      font-size: 1.15rem;
+      font-size: 1.3rem;
       margin-bottom: 0.2rem;
     }
     .cv-org {
       font-family: var(--mono);
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       color: var(--accent);
       letter-spacing: 0.08em;
       margin-bottom: 0.6rem;
     }
-    .cv-desc { color: var(--muted); font-size: 0.9rem; max-width: 55ch; }
+    .cv-desc { color: var(--muted); font-size: 1rem; max-width: 55ch; }
 
 
     /* ── PROJECTS ── */
@@ -231,7 +247,7 @@
     
     .project-tag {
       font-family: var(--mono);
-      font-size: 0.68rem;
+      font-size: 0.8rem;
       color: var(--accent2);
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -239,64 +255,53 @@
     }
     .project-title {
       font-family: var(--serif);
-      font-size: 1.3rem;
+      font-size: 1.45rem;
       margin-bottom: 0.8rem;
       line-height: 1.3;
     }
-    .project-desc { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem; }
+    .project-desc { color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
     .project-link {
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       color: var(--accent);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    /* ── OPINIONS ── */
-    .opinions-list { display: flex; flex-direction: column; gap: 0; }
-    .opinion-item {
-      display: grid;
-      grid-template-columns: 120px 1fr 80px;
-      align-items: baseline;
-      gap: 2rem;
-      padding: 2rem 0;
+    /* ── WRITING ── */
+    .writing-list { display: flex; flex-direction: column; }
+    .writing-item {
+      padding: 2.5rem 0;
       border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: inherit;
-      transition: padding-left 0.2s;
+      max-width: 70ch;
     }
-    .opinion-item:hover { padding-left: 0.5rem; }
-    .opinion-date {
+    .writing-item:first-child { padding-top: 0; }
+    .writing-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .writing-meta {
       font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
+      font-size: 0.8rem;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
     }
-    .opinion-title {
+    .writing-title {
       font-family: var(--serif);
-      font-size: 1.15rem;
+      font-size: 1.6rem;
       line-height: 1.3;
+      margin-bottom: 1rem;
     }
-    .opinion-arrow {
-      font-size: 1.2rem;
-      color: var(--accent);
-      text-align: right;
-    }
+    .writing-body { color: var(--muted); font-size: 1.05rem; }
+    .writing-body p { margin-bottom: 1rem; }
+    .writing-body p:last-child { margin-bottom: 0; }
 
     /* ── CONTACT ── */
-    #contact {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      padding: 4rem 3rem;
-      border-bottom: none;
-    }
-    .contact-left h2 { margin-bottom: 0.5rem; }
-    .contact-left p { color: var(--muted); max-width: 60ch; margin-bottom: 1rem; }
     .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
     .contact-link {
       display: flex; align-items: center; gap: 1rem;
       font-family: var(--mono);
-      font-size: 0.8rem;
+      font-size: 1rem;
       color: var(--text);
       text-decoration: none;
       letter-spacing: 0.05em;
@@ -304,19 +309,6 @@
     }
     .contact-link:hover { color: var(--accent); }
     .contact-link-icon { color: var(--muted); width: 16px; }
-
-    .contact-right {
-      display: flex; flex-direction: column; justify-content: flex-end;
-      align-items: flex-end;
-    }
-    .big-initials {
-      font-family: var(--serif);
-      font-size: clamp(5rem, 12vw, 11rem);
-      line-height: 1;
-      color: var(--border);
-      font-style: italic;
-      user-select: none;
-    }
 
     /* ── FOOTER ── */
     footer {
@@ -332,53 +324,49 @@
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1.5rem; }
-      #hero { grid-template-columns: 1fr; grid-template-rows: auto auto auto auto; }
-      .hero-header { padding: 6rem 1.5rem 0; }
-      .hero-left { padding: 2rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
-      .hero-right { padding: 2rem 1.5rem 3rem; }
-      .hero-cta-row { padding: 1.5rem 1.5rem 2rem; }
+      #profile { grid-template-columns: 1fr; grid-template-rows: auto auto auto auto; }
+      .profile-header { padding: 6rem 1.5rem 0; }
+      .profile-left { padding: 2rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+      .profile-right { padding: 2rem 1.5rem 3rem; }
+      .profile-cta-row { padding: 1.5rem 1.5rem 2rem; }
       section { padding: 4rem 1.5rem; }
+      .cv-columns { grid-template-columns: 1fr; }
+      .cv-column:first-child { border-right: none; border-bottom: 1px solid var(--border); }
       .cv-grid { grid-template-columns: 90px 1fr; }
-      .opinion-item { grid-template-columns: 1fr; gap: 0.4rem; }
-      .opinion-date, .opinion-arrow { display: none; }
     }
     
-    @media (max-width: 768px) {
-  #cv > div[style] {
-    grid-template-columns: 1fr !important;
-  }
-}
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ════ SECTION: NAV ════ -->
 <nav>
-  <span class="nav-logo">Hi, welcome to my page!</span>
+  <span class="nav-logo">Welcome to my page!</span>
   <ul class="nav-links">
     <li><a href="#cv">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
-    <!-- <li><a href="#opinions">Writing</a></li>-->
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#writing">Writing</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<div id="hero">
+<!-- ════ SECTION: profile (intro + contact) ════ -->
+<div id="profile">
 
-  <div class="hero-header">
-    <p class="hero-tag">Graduate in Economics - Berlin - Open to Network</p>
-    <h1 class="hero-name">Jan <em>Großer</em></h1>
+  <div class="profile-header">
+    <p class="profile-tag">Graduate in Economics - Based in Berlin - Open to Network</p>
+    <h1 class="profile-name">Jan <em>Großer</em></h1>
   </div>
 
-  <div class="hero-left">
-    <p class="hero-desc">
-      Quantitative economist with a strong foundation in empirical methods, causal inference, and economic modelling. Research experience spans prosocial behaviour, distributional preferences, and policy design, with hands-on work across academic institutions and applied research settings (RWI, PwC). Proficient in R, Stata, Python, and SQL.
+  <div class="profile-left">
+    <p class="profile-desc">
+      Quantitative economist with a strong foundation in empirical methods, causal inference, and economic modelling. 
+      Research experience spans prosocial behaviour, distributional preferences, and policy design, 
+      with hands-on work across academic institutions and applied research settings (RWI, PwC). Proficient in R and working with Python.
     </p>
   </div>
 
-  <div class="hero-right" id="contact">
-    <p class="hero-contact-blurb">I'm open to network, interesting projects, talks and any other inquiries.</p>
+  <div class="profile-right">
+    <p class="profile-contact-blurb">I'm open to network. Reach out for interesting projects, talks and other inquiries!</p>
     <div class="contact-links">
       <a class="contact-link" href="mailto:jan.grosser@yahoo.de">
         <span class="contact-link-icon">✉</span> jan.grosser@yahoo.de
@@ -392,35 +380,32 @@
     </div>
   </div>
 
-  <div class="hero-cta-row">
-    <a href="#cv" class="hero-cta">View my profile ↓</a>
+  <div class="profile-cta-row">
+    <a href="#cv" class="profile-cta">View my profile ↓</a>
   </div>
 
 </div>
 
 
-<!-- CV / EXPERIENCE & EDUCATION -->
+<!-- ════ SECTION: CV (experience + education) ════ -->
 <section id="cv">
   <div class="section-header">
     <span class="section-num">01</span>
     <h2>Curriculum Vitae</h2>
   </div>
 
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border);">
+  <div class="cv-columns">
 
     <!-- LEFT: Experience -->
-    <div style="border-right: 1px solid var(--border); padding: 2rem;">
-      <h3 style="font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase;
-                 letter-spacing: 0.15em; color: var(--accent2); margin-bottom: 2rem;">
-        Professional Experience
-      </h3>
+    <div class="cv-column">
+      <h3 class="cv-subhead">Professional Experience</h3>
       <div class="cv-grid">
 
         <div class="cv-item">
-          <div class="cv-date">January - March, 2025</div>
+          <div class="cv-date">01/2025 - 03/2025</div>
           <div class="cv-content">
             <div class="cv-role">Internship </div>
-            <div class="cv-org"> PwC Germany, Essen <br /> 
+            <div class="cv-org"> PricewaterhouseCoopers GmbH, Standort Essen <br /> 
             Tax & Legal Solutions, Transfer Pricing Team
             </div>
             <p class="cv-desc">
@@ -431,10 +416,10 @@
         </div>
         
         <div class="cv-item">
-          <div class="cv-date">2022 - 2024</div>
+          <div class="cv-date">10/2022 - 12/2024</div>
           <div class="cv-content">
             <div class="cv-role">Student Research Assistant </div>
-            <div class="cv-org">Universität Duisburg-Essen <br /> 
+            <div class="cv-org">University of Duisburg-Essen <br /> 
             Chair of Econometrics and Financial Econometrics
             </div>
             <p class="cv-desc">
@@ -446,7 +431,7 @@
 
         
         <div class="cv-item">
-          <div class="cv-date">2022 - 2023</div>
+          <div class="cv-date">08/2022 - 06/2023</div>
           <div class="cv-content">
             <div class="cv-role">Student Research Assistant </div>
             <div class="cv-org">RWI – Leibniz Institute for Economic Research <br /> 
@@ -458,7 +443,7 @@ Rating)</p>
         </div>
 
         <div class="cv-item">
-          <div class="cv-date">August - October, 2022</div>
+          <div class="cv-date">08/2022 - 10/2022</div>
           <div class="cv-content">
             <div class="cv-role">Research Intern </div>
             <div class="cv-org">RWI – Leibniz Institute for Economic Research <br /> 
@@ -469,10 +454,10 @@ Rating)</p>
         </div>
 
         <div class="cv-item">
-          <div class="cv-date">2021 — 2022</div>
+          <div class="cv-date">01/2021 — 07/2022</div>
           <div class="cv-content">
             <div class="cv-role">Student Research Assistant</div>
-            <div class="cv-org">Ruhr Universität Bochum <br /> 
+            <div class="cv-org">Ruhr University Bochum <br /> 
             Chair of Empirical Economics
             </div>
             <p class="cv-desc">
@@ -485,18 +470,15 @@ Rating)</p>
     </div>
 
     <!-- RIGHT: Education -->
-    <div style="padding: 2rem;">
-      <h3 style="font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase;
-                 letter-spacing: 0.15em; color: var(--accent2); margin-bottom: 2rem;">
-        Education
-      </h3>
+    <div class="cv-column">
+      <h3 class="cv-subhead">Education</h3>
       <div class="cv-grid">
 
         <div class="cv-item">
           <div class="cv-date">2021 — 2025</div>
           <div class="cv-content">
             <div class="cv-role">M.Sc. Economics</div>
-            <div class="cv-org">Universität Duisburg-Essen</div>
+            <div class="cv-org">University of Duisburg-Essen</div>
             <p class="cv-desc">
               Focus on quantitative and empirical economics <br />
               <b>Thesis:</b> “Assessing the robustness and replicability of experimental findings on fairness preferences and their determinants“, Grade: 1,1 <br /> 
@@ -522,7 +504,7 @@ A comparison of econometric and machine-learning techniques, tested on an authen
         </div>
 
         <div class="cv-item">
-          <div class="cv-date">2017 —</div>
+          <div class="cv-date">2017 </div>
           <div class="cv-content">
             <div class="cv-role">General University Entrance Qualification</div>
             <div class="cv-org">Paulsen Gymnasium Berlin</div>
@@ -539,7 +521,7 @@ A comparison of econometric and machine-learning techniques, tested on an authen
 </section>
 
 
-<!-- PROJECTS -->
+<!-- ════ SECTION: PROJECTS ════ -->
 <section id="projects">
   <div class="section-header">
     <span class="section-num">02</span>
@@ -550,76 +532,85 @@ A comparison of econometric and machine-learning techniques, tested on an authen
     
     <a class="project-card" href="#" target="_blank">
       <div class="project-tag">Master Thesis</div>
-      <div class="project-title">Project Title</div>
-      <p class="project-desc">Project Description</p>
-      <span class="project-link">Link (Reference siehe Contact Links→</span>
+      <div class="project-title">Assessing the robustness and replicability of experimental findings on fairness preferences and their determinants</div>
+      <p class="project-desc">The objective of this thesis is to evaluate the
+replicability of previous experimental studies. By employing a unified
+estimation approach, this study addresses the challenge of comparing
+fairness preferences and evaluates the robustness of heterogeneous fairness
+ideals in diverse contexts. This thesis confirms the necessity for
+reproducible research, although the findings are predominantly qualitatively
+replicated, with some discrepancies.</p>
+      <span class="project-link">Available on request →</span>
     </a>
 
     <a class="project-card" href="#" target="_blank">
       <div class="project-tag">Seminar Paper - Development Economics</div>
-      <div class="project-title">Project Title</div>
-      <p class="project-desc">Project Description</p>
-      <span class="project-link">Link (Reference siehe Contact Links→</span>
+      <div class="project-title">Discussion of "The Short-term Impact of Unconditional Cash Transfers to the Poor: Experimental Evidence from Kenya"</div>
+      <p class="project-desc">The aim of the paper is a critical discussion and contextualization of the findings within the literature on development economics.</p>
+      <span class="project-link">Available on request →</span>
     </a>
 
     <a class="project-card" href="#" target="_blank">
-      <div class="project-tag">Seminar Paper on Pigouvian Taxation</div>
-      <div class="project-title">Project Title</div>
-      <p class="project-desc">Project Description</p>
-      <span class="project-link">Link (Reference siehe Contact Links→</span>
+      <div class="project-tag">Seminar Paper - Experimental Economics</div>
+      <div class="project-title">Equity in Policy Preferences: Experimental Investigation on the role of equity and responsibility in the context of Pigouvian taxes</div>
+      <p class="project-desc">In the design I combined
+two strands of literature in a novel design. The experimental investigation
+of policy design and research on distributive justice. The baseline
+design allows to investigate two interesting areas. First whether,
+in the presence of externalities, individual behaviour is adjusted. Second,
+what characteristics or aspects are considered in forming a judgement
+of fairness.</p>
+      <span class="project-link">Available on request →</span>
     </a>
     
     <a class="project-card" href="#" target="_blank">
       <div class="project-tag">Bachelor Thesis</div>
-      <div class="project-title">Project Title</div>
-      <p class="project-desc">Project Description</p>
-      <span class="project-link">Link (Reference siehe Contact Links→</span>
+      <div class="project-title">Assessing binary classification methods in credit
+scoring: A comparison of econometric and machine-learning techniques, tested on an authentic data set</div>
+      <p class="project-desc">In this thesis different methods, some of which are used in application and others which are rather rudimentary, are compared and
+evaluated using well-known metrics. The data set, is , unlike many others used in this field, not synthetic and therefore very suitable to compare the methods. Two
+older methods, linear discriminant analysis (LDA) and logistic regression (LR) achieve better results, than more advanced and modern methods.</p>
+      <span class="project-link">Available on request →</span>
     </a>
     
   </div>
-  
+
 </section>
 
 
-<!-- OPINIONS / WRITING -->
-<!--
-<section id="opinions">
+<!-- ════ SECTION: WRITING ════ -->
+<!-- To add a piece: copy one <article class="writing-item"> block and edit meta / title / body. -->
+
+<!--<section id="writing">
   <div class="section-header">
     <span class="section-num">03</span>
-    <h2>Writing &amp; Opinions</h2>
+    <h2>Writing</h2>
   </div>
 
-  <div class="opinions-list">
-    <a class="opinion-item" href="#">
-      <span class="opinion-date">Mar 2025</span>
-      <span class="opinion-title">Why most A/B tests in tech are underpowered and what to do about it</span>
-      <span class="opinion-arrow">→</span>
-    </a>
-    <a class="opinion-item" href="#">
-      <span class="opinion-date">Jan 2025</span>
-      <span class="opinion-title">LLMs are not the right tool for causal questions — and that matters</span>
-      <span class="opinion-arrow">→</span>
-    </a>
-    <a class="opinion-item" href="#">
-      <span class="opinion-date">Oct 2024</span>
-      <span class="opinion-title">On the difference between explainable AI and interpretable AI</span>
-      <span class="opinion-arrow">→</span>
-    </a>
-    <a class="opinion-item" href="#">
-      <span class="opinion-date">Jun 2024</span>
-      <span class="opinion-title">Data teams should own fewer dashboards, not more</span>
-      <span class="opinion-arrow">→</span>
-    </a>
-    <a class="opinion-item" href="#">
-      <span class="opinion-date">Feb 2024</span>
-      <span class="opinion-title">Stop calling everything a "data product"</span>
-      <span class="opinion-arrow">→</span>
-    </a>
+  <div class="writing-list">
+
+    <article class="writing-item">
+      <div class="writing-meta">May 2026 · Note</div>
+      <h3 class="writing-title">On reading regression tables like a skeptic</h3>
+      <div class="writing-body">
+        <p>A coefficient is a claim, not a conclusion. Before I trust one, I want to know what would have to be true about the data-generating process for it to mean what the author says it means — and how hard they looked for the cases where it wouldn't.</p>
+        <p>Most of the work in empirical economics isn't in the estimate; it's in ruling out the boring explanations first.</p>
+      </div>
+    </article>
+
+    <article class="writing-item">
+      <div class="writing-meta">Apr 2026 · Note</div>
+      <h3 class="writing-title">Replication is a feature, not a chore</h3>
+      <div class="writing-body">
+        <p>Writing my thesis on the robustness of fairness-preference experiments taught me that a result you can't reproduce is just a well-formatted opinion. The discipline of making every step runnable end-to-end is what separates an analysis from an anecdote.</p>
+      </div>
+    </article>
+
   </div>
-</section>
--->
 
+</section>-->
 
+<!-- ════ SECTION: FOOTER ════ -->
 <footer>
   <span>© 2026 Jan Großer</span>
   <span>Built with HTML · Hosted on GitHub Pages</span>
@@ -630,19 +621,13 @@ A comparison of econometric and machine-learning techniques, tested on an authen
   const sections = document.querySelectorAll('section');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        // Animate skill bars when CV section becomes visible
-        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width + '%';
-        });
-      }
+      if (e.isIntersecting) e.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
   sections.forEach(s => observer.observe(s));
 
-  // Hero is visible from the start
-  document.querySelector('#hero') && (document.querySelector('#hero').style.opacity = '1');
+  // profile is visible from the start
+  document.querySelector('#profile') && (document.querySelector('#profile').style.opacity = '1');
 </script>
 </body>
 </html>
